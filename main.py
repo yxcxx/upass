@@ -7,28 +7,15 @@ import tornado.httpserver
 
 from tornado.options import define, options
 
+from url import HANDLER
+from setting import setting
+
 define("port", default=8000, help="app run in this port")
 
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = [
-            (r"/", MainHandler),
-        ]
-
-        settings = dict(
-            debug=True,
-        )
-        tornado.web.Application.__init__(self, handlers, **settings)
-
-
-class MainHandler(tornado.web.RequestHandler):
-    def get(self, *args, **kwargs):
-        return self.write("Hello world")
-
-    def post(self, *args, **kwargs):
-        pass
-
+        tornado.web.Application.__init__(self, HANDLER, **setting)
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
