@@ -2,9 +2,7 @@ __author__ = 'yxc'
 
 from sqlalchemy import String, Binary, Integer
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import *
 
-from setting import engine
-
-engine = create_engine(target=engine)
-
-
+Base = declarative_base()
